@@ -1,0 +1,32 @@
+# data.yaml 示例 —— YOLO 训练必须的「数据集说明书」
+# 放在 yolo_dataset/ 目录下，train_yolo.py 通过它知道去哪读图、有几个类、类叫什么。
+#
+# 字段说明：
+#   path   : 数据集根目录（images/ 和 labels/ 都在这下面）
+#   train  : 训练集图片相对路径（对应 labels/train 放标签）
+#   val    : 验证集图片相对路径（对应 labels/val 放标签）
+#   nc     : 类别数量（number of classes）
+#   names  : 类别名列表，顺序要和 label 文件里的「类别下标」一一对应
+#            （标签文件每行第一个数字就是下标：0=表格, 1=表头, 2=重点内容, 3=型号）
+
+path: C:/Users/admin/WorkBuddy/2026-07-27-09-13-23/table-training/yolo_dataset
+train: images/train
+val: images/val
+nc: 4
+names: ["表格", "表头", "重点内容", "型号"]
+
+# ---- 目录结构长这样 ----
+# yolo_dataset/
+# ├── data.yaml
+# ├── images/
+# │   ├── train/   (xxx.png ...)
+# │   └── val/     (xxx.png ...)
+# └── labels/
+#     ├── train/   (xxx.txt ...  每行: 类别下标 xc yc bw bh，空格分隔，坐标归一化到 0~1)
+#     └── val/     (xxx.txt ...)
+#
+# labels 里某个 txt 的内容示例（对应一张图里的 3 个框）：
+#   0 0.512345 0.304167 0.412345 0.583333
+#   1 0.512345 0.120833 0.412345 0.062500
+#   3 0.250000 0.750000 0.150000 0.041667
+#   ↑下标   ↑xc       ↑yc       ↑bw       ↑bh
